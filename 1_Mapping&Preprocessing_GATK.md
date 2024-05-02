@@ -1,3 +1,17 @@
+
+# Mapping & Pre-processing
+## GATK best practices
+### Notes:
+
+* Bwa-mem mapping tool for genomics data.
+* Star v2 for RNA-Seq data.
+
+(How to) Generate an unmapped BAM from FASTQ or aligned BAM : [Convert FastQ to uBAM](https://gatk.broadinstitute.org/hc/en-us/articles/4403687183515--How-to-Generate-an-unmapped-BAM-from-FASTQ-or-aligned-BAM)
+
+
+
+
+
 ```mermaid
 
 
@@ -46,10 +60,6 @@ flowchart TD;
         r_out --> r(BQSR method identifies bias and applies correction:\nGenomeAnalysisTK.jar:\nBaseRecalibrator\nPrintReads\nAnalyzeCovariates Plots)
         r--->rc(Recalibrated\nBAM\n-ready for variant calling analysis)
     end
-
-%%useful_links:
-fastq_to_UBAM(Fastq to UBAM\nReference_link)
-    click fastq_to_UBAM href "https://gatk.broadinstitute.org/hc/en-us/articles/4403687183515--How-to-Generate-an-unmapped-BAM-from-FASTQ-or-aligned-BAM"
 
 %%Comment: GATK recommends using uBAM instead of fastQ as it can support metadata (RG,)
 
