@@ -1,6 +1,9 @@
 
 # Mapping & Pre-processing
 ## GATK best practices
+
+This file provides an introduction to the tools and the good practices workflow used for mapping and preprocessing in gatkv4.0.
+
 ### Notes:
 
 * Bwa-mem mapping tool for genomics data.
