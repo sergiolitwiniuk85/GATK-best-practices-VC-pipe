@@ -19,6 +19,18 @@ Tag @RG must be present for GATK analysis: [@RG error](https://gatk.broadinstitu
 
 **Used tools:**
 
+**[SamToFastq:](https://broadinstitute.github.io/picard/command-line-overview.html#SamToFastq)**
+Converts a SAM or BAM file to FASTQ. This tool extracts read sequences and base quality scores from the input SAM/BAM file and outputs them in FASTQ format. This can be used by way of a pipe to run BWA MEM on unmapped BAM (uBAM) files efficiently.
+
+Usage example:
+
+```java -jar picard.jar SamToFastq \
+     I=input.bam \
+     FASTQ=output.fastq
+```
+<br />
+
+
 **[MergeBamAlignment:](https://broadinstitute.github.io/picard/command-line-overview.html#MergeBamAlignment)**
 Merge alignment data from a SAM or BAM with data in an unmapped BAM file. This tool produces a new SAM or BAM file that includes all aligned and unaligned reads and also carries forward additional read attributes from the unmapped BAM (attributes that are otherwise lost in the process of alignment). The purpose of this tool is to use information from the unmapped BAM to fix up aligner output. The resulting file will be valid for use by other Picard tools. For simple BAM file merges, use MergeSamFiles. Note that MergeBamAlignment expects to find a sequence dictionary in the same directory as REFERENCE_SEQUENCE and expects it to have the same base name as the reference FASTA except with the extension ".dict". If the output sort order is not coordinate, then reads that are clipped due to adapters or overlapping will not contain the NM, MD, or UQ tags.
 
@@ -30,7 +42,7 @@ java -jar picard.jar MergeBamAlignment \
        O=merge_alignments.bam \
        R=reference_sequence.fasta
 ```
-<br /><br />
+<br />
 
 **[MarkDuplicates:](https://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicates)**
 Identifies duplicate reads.
