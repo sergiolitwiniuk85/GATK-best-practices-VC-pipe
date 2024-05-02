@@ -60,6 +60,34 @@ Usage example:
 ```
 <br />
 
+**[BaseRecalibrator](https://gatk.broadinstitute.org/hc/en-us/articles/21905050792603-BaseRecalibrator)**
+First pass of the base quality score recalibration. Generates a recalibration table based on various covariates. The default covariates are read group, reported quality score, machine cycle, and nucleotide context.
+
+Usage example:
+ ```gatk BaseRecalibrator \
+   -I my_reads.bam \
+   -R reference.fasta \
+   --known-sites sites_of_variation.vcf \
+   --known-sites another/optional/setOfSitesToMask.vcf \
+   -O recal_data.table
+   ```
+
+<br>
+
+**[ApplyBQSR](https://gatk.broadinstitute.org/hc/en-us/articles/21905038144155-ApplyBQSR)**
+This tool performs the second pass in a two-stage process called Base Quality Score Recalibration (BQSR). Specifically, it recalibrates the base qualities of the input reads based on the recalibration table produced by the BaseRecalibrator tool, and outputs a recalibrated BAM or CRAM file.
+
+Usage example:
+ ```gatk ApplyBQSR \
+   -R reference.fasta \
+   -I input.bam \
+   --bqsr-recal-file recalibration.table \
+   -O output.bam
+ ```
+
+<br>
+
+
 ### Optional:
 **If using FastQ as input:**
 
@@ -95,8 +123,11 @@ Usage example:
       RGPU=unit1 \
       RGSM=20
 ```
-<br><br>
+<br>
 
+*Indel Realignment is deprecated from v4.
+
+<br>
 ## Mapping workflow
 
 ```mermaid
@@ -144,7 +175,7 @@ flowchart TD;
 
 
     subgraph Base Quality Score Recalibration
-        r_out --> r(BQSR method identifies bias and applies correction:\nGenomeAnalysisTK.jar:\nBaseRecalibrator\nPrintReads\nAnalyzeCovariates Plots)
+        r_out --> r(BQSR method identifies bias and applies correction:\nGenomeAnalysisTK.jar:\nBaseRecalibrator\nApplyBQSR)
         r--->rc(Recalibrated\nBAM\n-ready for variant calling analysis)
     end
 
