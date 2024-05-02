@@ -131,10 +131,11 @@ java -jar picard.jar AddOrReplaceReadGroups \
 ```
 <br>
 
-*Indel Realignment is deprecated from v4.
 
 <br>
+
 ## Mapping workflow
+*Indel Realignment step is deprecated from v4.
 
 ```mermaid
 
