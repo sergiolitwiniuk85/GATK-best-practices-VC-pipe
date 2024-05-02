@@ -27,7 +27,8 @@ Converts a SAM or BAM file to FASTQ. This tool extracts read sequences and base 
 
 Usage example:
 
-```java -jar picard.jar SamToFastq \
+```
+java -jar picard.jar SamToFastq \
      I=input.bam \
      FASTQ=output.fastq
 ```
@@ -53,7 +54,8 @@ Identifies duplicate reads.
 This tool locates and tags duplicate reads in a BAM or SAM file, where duplicate reads are defined as originating from a single fragment of DNA. Duplicates can arise during sample preparation e.g. library construction using PCR. See also EstimateLibraryComplexity for additional notes on PCR duplication artifacts. Duplicate reads can also result from a single amplification cluster, incorrectly detected as multiple clusters by the optical sensor of the sequencing instrument. These duplication artifacts are referred to as optical duplicates.
 
 Usage example:
-```java -jar picard.jar MarkDuplicates \
+```
+java -jar picard.jar MarkDuplicates \
       I=input.bam \
       O=marked_duplicates.bam \
       M=marked_dup_metrics.txt
@@ -64,7 +66,8 @@ Usage example:
 First pass of the base quality score recalibration. Generates a recalibration table based on various covariates. The default covariates are read group, reported quality score, machine cycle, and nucleotide context.
 
 Usage example:
- ```gatk BaseRecalibrator \
+ ```
+ gatk BaseRecalibrator \
    -I my_reads.bam \
    -R reference.fasta \
    --known-sites sites_of_variation.vcf \
@@ -78,7 +81,8 @@ Usage example:
 This tool performs the second pass in a two-stage process called Base Quality Score Recalibration (BQSR). Specifically, it recalibrates the base qualities of the input reads based on the recalibration table produced by the BaseRecalibrator tool, and outputs a recalibrated BAM or CRAM file.
 
 Usage example:
- ```gatk ApplyBQSR \
+ ```
+ gatk ApplyBQSR \
    -R reference.fasta \
    -I input.bam \
    --bqsr-recal-file recalibration.table \
@@ -100,7 +104,8 @@ Cleans the provided SAM/BAM, soft-clipping beyond-end-of-reference alignments an
 Verify mate-pair information between mates and fix if needed.This tool ensures that all mate-pair information is in sync between each read and its mate pair. If no OUTPUT file is supplied then the output is written to a temporary file and then copied over the INPUT file. Reads marked with the secondary alignment flag are written to the output file unchanged.
 
 Usage example:
-```java -jar picard.jar FixMateInformation \
+```
+java -jar picard.jar FixMateInformation \
        I=input.bam \ 
        O=fixed_mate.bam
 ```
@@ -114,7 +119,8 @@ For more information about read groups, see the GATK Dictionary entry.
 This tool accepts INPUT BAM and SAM files or URLs from the Global Alliance for Genomics and Health (GA4GH) see [GA4GH](http://ga4gh.org/#/documentation).
 
 Usage example:
-```java -jar picard.jar AddOrReplaceReadGroups \
+```
+java -jar picard.jar AddOrReplaceReadGroups \
       I=input.bam \
       O=output.bam \
       RGID=4 \
