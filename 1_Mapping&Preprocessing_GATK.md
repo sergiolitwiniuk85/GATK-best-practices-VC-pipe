@@ -15,6 +15,7 @@ ReadGroup important notes: [Meaning of the read group](https://gatk.broadinstitu
 
 Tag @RG must be present for GATK analysis: [@RG error](https://gatk.broadinstitute.org/hc/en-us/articles/360035532352-Errors-about-read-group-RG-information)
 
+<br />
 
 **Used tools:**
 
@@ -29,11 +30,21 @@ java -jar picard.jar MergeBamAlignment \
        O=merge_alignments.bam \
        R=reference_sequence.fasta
 ```
+<br /><br />
 
+**[MarkDuplicates:](https://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicates)**
+Identifies duplicate reads.
 
+This tool locates and tags duplicate reads in a BAM or SAM file, where duplicate reads are defined as originating from a single fragment of DNA. Duplicates can arise during sample preparation e.g. library construction using PCR. See also EstimateLibraryComplexity for additional notes on PCR duplication artifacts. Duplicate reads can also result from a single amplification cluster, incorrectly detected as multiple clusters by the optical sensor of the sequencing instrument. These duplication artifacts are referred to as optical duplicates.
 
-
-
+Usage example:
+```java -jar picard.jar MarkDuplicates \
+      I=input.bam \
+      O=marked_duplicates.bam \
+      M=marked_dup_metrics.txt
+```
+<br />
+<br />
 
 ```mermaid
 
