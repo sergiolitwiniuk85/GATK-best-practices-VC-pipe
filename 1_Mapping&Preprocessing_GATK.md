@@ -14,6 +14,17 @@ This file provides an introduction to the tools and the good practices workflow 
 
 (How to) Install all software packages required to follow the GATK Best Practices:[ Install software packages guide ](https://gatk.broadinstitute.org/hc/en-us/articles/360041320571--How-to-Install-all-software-packages-required-to-follow-the-GATK-Best-Practices)
 
+Software packages:
+
+    BWA
+    SAMtools
+    Picard
+    Genome Analysis Toolkit (GATK)
+    IGV
+    RStudio IDE and R libraries ggplot2 and gsalib
+
+
+
 ReadGroup important notes: [Meaning of the read group](https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups)
 
 Tag @RG must be present for GATK analysis: [@RG error](https://gatk.broadinstitute.org/hc/en-us/articles/360035532352-Errors-about-read-group-RG-information)
