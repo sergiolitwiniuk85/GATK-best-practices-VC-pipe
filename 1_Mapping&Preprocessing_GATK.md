@@ -187,17 +187,13 @@ flowchart TD;
 
 
 
-    subgraph Indel-based:Realignment
-        Mark---rtc(GenomeAnalysisTK.jar:\nRealignerTargetCreator\n-Find intervals\nRoche 454 not compatible)
 
-        rtc ---ir(IndelRealigner)-----r_out(Realigned\nBAM)
-    end
-
+%%indelRealignment step deprecated
 
 
     subgraph Base Quality Score Recalibration
-        r_out --> r(BQSR method identifies bias and applies correction:\nGenomeAnalysisTK.jar:\nBaseRecalibrator\nApplyBQSR)
-        r--->rc(Recalibrated\nBAM\n-ready for variant calling analysis)
+        Mark --BAM--> r(BQSR - GenomeAnalysisTK.jar:\nBaseRecalibrator\nApplyBQSR)
+        r--->rc(Recalibrated BAM\n-ready for variant calling analysis)
     end
 
 %%Comment: GATK recommends using uBAM instead of fastQ as it can support metadata (RG,)
