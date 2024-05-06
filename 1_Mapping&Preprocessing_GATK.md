@@ -146,7 +146,7 @@ java -jar picard.jar AddOrReplaceReadGroups \
 <br>
 
 
-**GnomAD v4:**
+**Notes on GnomAD v4:**
 
 The full gnomAD v4 exomes dataset, like the gnomAD v4 genomes, was created by combining all samples’ genomic VCFs (gVCF) into a single dataset using Hail. The v4 exomes callset is stored as a VariantDataset (VDS), Hail’s newest implementation of the scalable variant call representation (SVCR) data structure. To create our release containing 730,947 samples, we actually processed over 955,000 samples, and the scalability of the VDS format means that the full v4 dataset (955,213 samples) only uses 18TB in storage (vs 897TB for a traditional project VCF)
 
