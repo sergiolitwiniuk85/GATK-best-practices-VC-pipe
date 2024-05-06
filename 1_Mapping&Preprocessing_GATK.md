@@ -146,6 +146,17 @@ java -jar picard.jar AddOrReplaceReadGroups \
 <br>
 
 
+**GnomAD v4:**
+
+The major steps taken in v4 sample QC are listed here (with details following):
+
+* Samples with obviously bad quality were removed using hard filters
+* Inferred exome capture platform for each sample
+* Inferred sex karyotypes for each sample using normalized sex chromosome coverage
+* Inferred relatedness between samples, including between the v4 exomes and genomes, and identified pairs of first and second degree relatives
+* Used genetic similarity to cluster and identify genetic ancestry groups
+* Filtered samples based on QC metrics
+
 <br>
 
 ## Mapping workflow
