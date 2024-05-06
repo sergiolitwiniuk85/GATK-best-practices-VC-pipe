@@ -150,12 +150,33 @@ java -jar picard.jar AddOrReplaceReadGroups \
 
 The major steps taken in v4 sample QC are listed here (with details following):
 
-* Samples with obviously bad quality were removed using hard filters
+* Samples with obviously bad quality were removed using hard filters:Applied the novel metric Contamination from Homozygous Alternate Reference Reads [CHARR](https://www.biorxiv.org/content/10.1101/2023.06.28.545801v1)
+
+QC metrics were computed using the Hail sample QC module on all autosomal, biallelic SNVs. In summary, the hard filtering step removed samples that were outliers for the following metrics:
+
+Contamination (mean AB biallelic SNPs) > 1.5%<br>
+Number of singletons > 5000<br>
+Heterozygous: homozygous ratio > 10<br>
+Bases with DP over 1X < 5x107<br>
+Bases with DP over 20X < 4x107<br>
+Proportion chimera > 0.05<br>
+Mean chromosome 20 DP < 10X<br>
+Callrate calculated over high quality sites < 0.8<br>
 * Inferred exome capture platform for each sample
-* Inferred sex karyotypes for each sample using normalized sex chromosome coverage
-* Inferred relatedness between samples, including between the v4 exomes and genomes, and identified pairs of first and second degree relatives
+
+Performed a principal components analysis (PCA) using missingness rate calculated per sample for each exome calling interval (intersection of Broad and UK Biobank intervals). Using nine principal components (PCs), we inferred that there are 20 unique exome sequencing platforms in gnomAD v4.
+* Inferred sex karyotypes for each sample using normalized sex chromosome coverage.
+
+Used [Hail’s impute_sex_chromosome_ploidy](https://hail.is/docs/0.2/vds/hail.vds.impute_sex_chromosome_ploidy.html#hail-vds-impute-sex-chromosome-ploidy) impute_sex_chromosome_ploidy module to calculate mean coverage across chromosomes X (chrX) and Y (chrY).
+
+* Inferred relatedness between samples, including between the v4 exomes and genomes, and identified pairs of first and second degree relatives.
+
+CUDA-based implementation of KING ([cuKING](https://github.com/populationgenomics/cuKING/tree/1d29d72a184da33cf2500f8b537ae56ce66a7e96); implemented by Leonhard Gruenschloss)
+
 * Used genetic similarity to cluster and identify genetic ancestry groups
 * Filtered samples based on QC metrics
+
+More details on GnomAD v4.0 [here](https://gnomad.broadinstitute.org/news/2023-11-gnomad-v4-0/)
 
 <br>
 
