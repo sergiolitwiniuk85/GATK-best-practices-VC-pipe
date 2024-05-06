@@ -148,6 +148,9 @@ java -jar picard.jar AddOrReplaceReadGroups \
 
 **GnomAD v4:**
 
+The full gnomAD v4 exomes dataset, like the gnomAD v4 genomes, was created by combining all samples’ genomic VCFs (gVCF) into a single dataset using Hail. The v4 exomes callset is stored as a VariantDataset (VDS), Hail’s newest implementation of the scalable variant call representation (SVCR) data structure. To create our release containing 730,947 samples, we actually processed over 955,000 samples, and the scalability of the VDS format means that the full v4 dataset (955,213 samples) only uses 18TB in storage (vs 897TB for a traditional project VCF)
+
+
 The major steps taken in v4 sample QC are listed here (with details following):
 
 * Samples with obviously bad quality were removed using hard filters:Applied the novel metric Contamination from Homozygous Alternate Reference Reads [CHARR](https://www.biorxiv.org/content/10.1101/2023.06.28.545801v1)
@@ -176,7 +179,7 @@ CUDA-based implementation of KING ([cuKING](https://github.com/populationgenomic
 * Used genetic similarity to cluster and identify genetic ancestry groups
 * Filtered samples based on QC metrics
 
-More details on GnomAD v4.0 [here](https://gnomad.broadinstitute.org/news/2023-11-gnomad-v4-0/)
+Reference details on GnomAD v4.0 [here](https://gnomad.broadinstitute.org/news/2023-11-gnomad-v4-0/)
 
 <br>
 
