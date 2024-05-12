@@ -128,6 +128,8 @@ flowchart TD;
     B -.- F(Multiple\ngVCF\nfiles) --- G(Hail\n-VariantDatasetCombiner) --- VDS
   end
 
+  VDS --- K(Hail\n-Sample_qc\n-Ancestry\nSex inference\n-Relatedness Inference *cuKING*\n-Variant QC)
+
 %%Comment
 
 
