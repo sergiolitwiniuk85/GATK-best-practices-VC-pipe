@@ -1,11 +1,49 @@
-## Using GATK best practices for VC
+# GATK Best Practices Variant Calling Pipeline
+
+## Overview
+This pipeline implements GATK's best practices for accurate variant discovery, covering read mapping, preprocessing, and variant calling. The workflow ensures reliable identification of SNPs and indels for genomic studies.
+
+![Variant Calling Workflow](https://via.placeholder.com/800x200?text=GATK+Variant+Calling+Workflow)
+
+## Pipeline Steps
 
 ### 1. Mapping and Preprocessing
-Following GATK best practices, the mapping and preprocessing steps are crucial for accurate variant discovery. The process begins with aligning the sequencing reads to the reference genome using BWA-MEM. After alignment, the SAM files are converted to BAM files and sorted using Samtools. Next, duplicates are marked with GATK MarkDuplicates to ensure that duplicate reads do not interfere with downstream analyses. Finally, Base Quality Score Recalibration (BQSR) is performed using GATK's BaseRecalibrator and ApplyBQSR tools to adjust the quality scores of the reads based on known variants, enhancing the accuracy of the subsequent variant calling.
+![Mapping Diagram](https://via.placeholder.com/300x150?text=Mapping+%26+Preprocessing)
 
-https://github.com/sergiolitwiniuk85/GATK-best-practices-VC-pipe/blob/main/1_Mapping%26Preprocessing_GATK.md
+Following GATK best practices:
+1. **Alignment**: Map sequencing reads to reference genome using BWA-MEM
+2. **Format Conversion**: Convert SAM → sorted BAM with Samtools
+3. **Duplicate Marking**: Identify PCR duplicates with GATK MarkDuplicates
+4. **BQSR**: Adjust base quality scores using BaseRecalibrator and ApplyBQSR
+
+[Detailed Documentation](https://github.com/sergiolitwiniuk85/GATK-best-practices-VC-pipe/blob/main/1_Mapping%26Preprocessing_GATK.md)
+
+---
 
 ### 2. Variant Calling
-Adhering to GATK best practices, the variant calling process involves several key steps to identify SNPs and indels in the preprocessed BAM files. The GATK HaplotypeCaller is used to perform local realignment of reads and call variants, producing a GVCF file. This file is then processed with GATK GenotypeGVCFs to consolidate GVCF files and call genotypes across samples. The final step involves applying hard filters to the called variants using GATK VariantFiltration, ensuring that only high-confidence variants are retained for further analysis. This comprehensive approach ensures robust and reliable variant detection, critical for genomic studies.
+![Variant Calling](https://via.placeholder.com/300x150?text=Variant+Calling)
 
-https://github.com/sergiolitwiniuk85/GATK-best-practices-VC-pipe/blob/main/2_VariantCalling_GATK.md
+Accurate variant detection:
+1. **HaplotypeCaller**: Perform local realignment and call variants (outputs GVCF)
+2. **GenotypeGVCFs**: Consolidate GVCF files and call genotypes
+3. **Variant Filtration**: Apply hard filters to retain high-confidence variants
+
+[Detailed Documentation](https://github.com/sergiolitwiniuk85/GATK-best-practices-VC-pipe/blob/main/2_VariantCalling_GATK.md)
+
+---
+
+## Key Features
+- Implements GATK's gold-standard workflow
+- Optimized for accuracy and reproducibility
+- Comprehensive quality control at each step
+- Compatible with WGS and targeted sequencing data
+
+## Dependencies
+- [GATK](https://gatk.broadinstitute.org/) (v4.2+)
+- [BWA](https://bio-bwa.sourceforge.net/) (v0.7+)
+- [Samtools](https://www.htslib.org/) (v1.12+)
+- [Nextflow](https://www.nextflow.io/) (v22.04+)
+
+## References
+1. [GATK Best Practices](https://gatk.broadinstitute.org/hc/en-us/articles/360035894711-About-the-GATK-Best-Practices)
+2. Van der Auwera, G.A. et al. (2013). From FastQ data to high-confidence variant calls. *Nature Protocols* 8, 2483-2512.
