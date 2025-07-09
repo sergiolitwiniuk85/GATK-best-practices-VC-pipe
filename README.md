@@ -7,3 +7,5 @@ https://github.com/sergiolitwiniuk85/GATK-best-practices-VC-pipe/blob/main/1_Map
 
 ### 2. Variant Calling
 Adhering to GATK best practices, the variant calling process involves several key steps to identify SNPs and indels in the preprocessed BAM files. The GATK HaplotypeCaller is used to perform local realignment of reads and call variants, producing a GVCF file. This file is then processed with GATK GenotypeGVCFs to consolidate GVCF files and call genotypes across samples. The final step involves applying hard filters to the called variants using GATK VariantFiltration, ensuring that only high-confidence variants are retained for further analysis. This comprehensive approach ensures robust and reliable variant detection, critical for genomic studies.
+
+https://github.com/sergiolitwiniuk85/GATK-best-practices-VC-pipe/blob/main/2_VariantCalling_GATK.md
